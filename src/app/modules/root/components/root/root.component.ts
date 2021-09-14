@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Asset} from "../../interface/asset";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
 	selector: 'app-root',
@@ -19,7 +20,10 @@ export class RootComponent implements OnInit {
 	sortFlag: any = true
 	types: string[] = ['truck', 'trailer', 'transport']
 
-	constructor(private modalService: NgbModal) {
+	constructor(
+		private modalService: NgbModal,
+		private flashMessage: FlashMessagesService,
+	) {
 	}
 
 	ngOnInit(): void {
@@ -36,20 +40,31 @@ export class RootComponent implements OnInit {
 	}
 
 	save(modal: any) {
-		console.log(this.modalEl)
 		let idx = this.assetList.findIndex(elem => elem.id === this.modalEl.id)
 		if (idx < 0) {
 			this.modalEl.id = Date.now()
 			this.assetList.push(this.modalEl)
+			this.flashMessage.show('You have created new asset', {
+				cssClass: 'alert-success',
+				timeout: 4000
+			});
 		} else {
 			this.assetList[idx] = {...this.modalEl}
 			this.currentAsset = {...this.modalEl}
+			this.flashMessage.show('You have edit asset', {
+				cssClass: 'alert-info',
+				timeout: 4000
+			});
 		}
 		modal.close()
 	}
 
 	delete(el: Asset) {
 		this.assetList = this.assetList.filter(elem => elem.id !== el.id)
+		this.flashMessage.show('Remove product', {
+			cssClass: 'alert-info',
+			timeout: 4000
+		});
 	}
 
 	changeMap(el: Asset){
@@ -59,5 +74,9 @@ export class RootComponent implements OnInit {
 	changeSort(field: string){
 		this.sortField = field
 		this.sortFlag = !this.sortFlag
+		this.flashMessage.show('Change sort', {
+			cssClass: 'alert-info',
+			timeout: 4000
+		});
 	}
 }
