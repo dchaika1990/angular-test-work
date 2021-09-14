@@ -52,4 +52,9 @@ table{
 			cursor: pointer;
 		}
 	}
+	.sorting{
+		&:hover{
+			cursor: pointer;
+		}
+	}
 }

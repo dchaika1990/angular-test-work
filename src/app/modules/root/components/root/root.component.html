@@ -1,18 +1,18 @@
 <div class="container mt-5">
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-6" *ngIf="assetList.length">
 			<agm-map [latitude]="currentAsset.latitude" [longitude]="currentAsset.longitude">
 				<agm-marker [latitude]="currentAsset.latitude" [longitude]="currentAsset.longitude"></agm-marker>
 			</agm-map>
 		</div>
-		<div class="col-lg-6">
+		<div class="{{assetList.length ? 'col-lg-6' : 'col-12'}}">
 			<button class="btn btn-primary mb-3" (click)="open(content, {})">Add asset</button>
 			<table class="table table-responsive table-striped">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col" (click)="changeSort('name')">Name</th>
-						<th scope="col" (click)="changeSort('type')">Type</th>
+						<th scope="col" class="sorting" (click)="changeSort('name')">Name</th>
+						<th scope="col" class="sorting" (click)="changeSort('type')">Type</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
@@ -45,8 +45,10 @@
 				<div class="form-group">
 					<input class="form-control" type="text" [(ngModel)]="modalEl.name" placeholder="Name">
 				</div>
-				<div class="form-group">
-					<input class="form-control" type="text" [(ngModel)]="modalEl.type" placeholder="Type">
+				<div class="form-group" >
+					<select name="type"  [(ngModel)]="modalEl.type"  class="form-control">
+						<option *ngFor="let type of types" [value]="type" [defaultSelected]="modalEl.type === type">{{type}}</option>
+					</select>
 				</div>
 				<div class="form-group">
 					<input class="form-control" type="number" [(ngModel)]="modalEl.latitude" placeholder="Latitude">
