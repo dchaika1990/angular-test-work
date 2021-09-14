@@ -5,6 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AgmCoreModule} from "@agm/core";
+import { SortPipe } from './sort.pipe';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
 
 
 @NgModule({
-	declarations: [RootComponent],
+	declarations: [RootComponent, SortPipe],
 	imports: [
 		CommonModule,
 		NgbModule,
