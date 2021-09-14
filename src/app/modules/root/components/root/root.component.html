@@ -1,6 +1,6 @@
 <div class="container mt-5">
 	<div class="row">
-		<div class="col-lg-6" *ngIf="assetList.length">
+		<div class="col-lg-6 mb-5" *ngIf="assetList.length">
 			<agm-map [latitude]="currentAsset.latitude" [longitude]="currentAsset.longitude">
 				<agm-marker [latitude]="currentAsset.latitude" [longitude]="currentAsset.longitude"></agm-marker>
 			</agm-map>
