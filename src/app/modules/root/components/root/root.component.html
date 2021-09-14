@@ -1,1 +1,62 @@
-<p>root works!</p>
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-lg-6">
+			<agm-map [latitude]="currentAsset.latitude" [longitude]="currentAsset.longitude">
+				<agm-marker [latitude]="currentAsset.latitude" [longitude]="currentAsset.longitude"></agm-marker>
+			</agm-map>
+		</div>
+		<div class="col-lg-6">
+			<table class="table table-responsive table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Type</th>
+						<th scope="col"></th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let el of assetList; let i = index"
+						(click)="changeMap(el)"
+						[class.active]="el.id === currentAsset.id"
+					>
+						<td>{{i + 1}}</td>
+						<td>{{el.name}}</td>
+						<td>{{el.type}}</td>
+						<td><button class="btn btn-primary" (click)="open(content, el)">Edit</button></td>
+						<td><button class="btn btn-danger" (click)="delete(el)">Delete</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Edit</h4>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-12">
+				<div class="form-group">
+					<input class="form-control" type="text" [(ngModel)]="modalEl.name" placeholder="Name">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" [(ngModel)]="modalEl.type" placeholder="Type">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" [(ngModel)]="modalEl.latitude" placeholder="Latitude">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" [(ngModel)]="modalEl.longitude" placeholder="Longitude">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close()">Close</button>
+		<button type="button" class="btn btn-outline-dark" (click)="save(modal)">Save</button>
+	</div>
+</ng-template>

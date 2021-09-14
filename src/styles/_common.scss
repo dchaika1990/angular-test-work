@@ -36,3 +36,20 @@ a {
     text-decoration: none !important;
   }
 }
+
+agm-map {
+	height: 500px;
+	width: 100%;
+}
+
+table{
+	tbody tr{
+		transition: all .3s ease-in-out;
+		&.active,
+		&:hover{
+			background-color: $fontColor!important;
+			color: $lightColor;
+			cursor: pointer;
+		}
+	}
+}
