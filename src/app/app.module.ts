@@ -23,7 +23,7 @@ const apiKey = ''
 		NgbModule,
 		RootModule,
 		FlashMessagesModule.forRoot(),
-		AgmCoreModule.forRoot({apiKey: 'AIzaSyDRo3awoe0sUiGAwybvJ8yjKCp8DSBJwio'}),
+		AgmCoreModule.forRoot({apiKey}),
 	],
 	providers: [],
 	bootstrap: [AppComponent]
