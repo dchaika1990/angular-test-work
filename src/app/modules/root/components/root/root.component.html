@@ -7,7 +7,7 @@
 		</div>
 		<div class="{{assetList.length ? 'col-lg-6' : 'col-12'}}">
 			<button class="btn btn-primary mb-3" (click)="open(content, {})">Add asset</button>
-			<table class="table table-responsive table-striped">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -30,6 +30,10 @@
 					</tr>
 				</tbody>
 			</table>
+			<div *ngIf="assetList.length" class="text-center">
+				{{currentAsset.hasOwnProperty('name') ? 1 : 0}} selected / Total {{assetList.length}}
+
+			</div>
 		</div>
 	</div>
 </div>
